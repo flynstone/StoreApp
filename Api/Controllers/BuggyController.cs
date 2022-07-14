@@ -35,7 +35,7 @@ namespace Api.Controllers
             var thingToReturn = thing.ToString();
 
             // App should not get to this point, but is required to keep controller happy =).
-            return Ok();
+            return Ok(); 
         }
 
         [HttpGet("badrequest")]
