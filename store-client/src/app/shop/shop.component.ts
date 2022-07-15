@@ -75,6 +75,7 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
+    // Wrapped in an if statement to avoid bug from pagination.
     if (this.shopParams.pageNumber !== event) {
       this.shopParams.pageNumber = event;
       this.getProducts();
