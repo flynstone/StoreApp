@@ -21,9 +21,10 @@ namespace Api.Extensions
                           .WithOrigins("https://localhost:4200");
                 });
             });
-            services.AddDbContext<AppDbContext>(x => x.UseSqlite(config.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
 
