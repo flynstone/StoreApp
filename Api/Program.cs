@@ -14,6 +14,7 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AppIdentityDbContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection")));
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddSwaggerDocumentation();
 // Redis configuration.
 builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
@@ -24,13 +25,6 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // Redirect to error controller to handle them.
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
@@ -43,6 +37,8 @@ app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSwaggerDocumentation();
 
 app.MapControllers();
 

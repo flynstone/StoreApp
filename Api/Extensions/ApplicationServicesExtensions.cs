@@ -51,7 +51,6 @@ namespace Api.Extensions
             });
 
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
 
             return services;
         }
