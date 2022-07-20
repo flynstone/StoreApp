@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Models.OrderAggregate;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -63,6 +64,25 @@ namespace Infrastructure.Data
                     foreach (var item in products)
                     {
                         context.Products.Add(item);
+                    }
+
+                    // Save to database.
+                    await context.SaveChangesAsync();
+                }
+
+                // DelieveryMethod table.
+                if (!context.DeliveryMethods.Any())
+                {
+                    // Fetch json file data.
+                    var dmData = File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");
+
+                    // Convert json file to entity.
+                    var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+
+                    // Add the data to entity framework.
+                    foreach (var item in methods)
+                    {
+                        context.DeliveryMethods.Add(item);
                     }
 
                     // Save to database.
