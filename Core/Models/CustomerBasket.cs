@@ -9,7 +9,7 @@
 
         public CustomerBasket(string id)
         {
-            Id = Id;
+            Id = id;
         }
 
         public string Id { get; set; }
