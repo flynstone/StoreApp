@@ -2,7 +2,7 @@
   <input 
     [ngClass]="(controlDir && controlDir.control && controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid' : 'is-valid' : null"
     [type]="type"
-    (input)="onChange($event.taget.value)"
+    (input)="onChange($event.target.value)"
     (blur)="onTouched()" 
     id="{{label}}"
     #input 

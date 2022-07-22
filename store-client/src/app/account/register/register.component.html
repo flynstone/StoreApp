@@ -5,45 +5,9 @@
         <h1 class="h3 mb-3 font-weight-normal">Register</h1>
       </div>
 
-      <div class="form-floating">
-        <input formControlName="displayName" type="text" id="displayName" class="form-control" placeholder="Display Name">
-        <label for="displayName">Display Name</label>
-        <span class="text-danger" *ngIf="registerForm.get('displayName').invalid
-          && registerForm.get('displayName').touched
-          && registerForm.get('displayName').errors['required']">
-          Display Name is required
-        </span>
-      </div>
-
-      <div class="pt-3"></div>
-
-      <div class="form-floating">
-        <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email Address">
-        <label for="inputEmail">Email address</label>
-        <span class="text-danger" *ngIf="registerForm.get('email').invalid
-          && registerForm.get('email').touched
-          && registerForm.get('email').errors['required']">
-          Email address is required
-        </span>
-        <span class="text-danger" *ngIf="registerForm.get('email').invalid
-          && registerForm.get('email').touched
-          && registerForm.get('email').errors['pattern']">
-          Email address is not valid
-        </span>
-      </div>
-
-      <div class="pt-3"></div>
-
-      <div class="form-floating">
-        <input formControlName="password" type="password" id="inputPassword" class="form-control"
-          placeholder="Password">
-        <label for="inputPassword">Password</label>
-        <span class="text-danger" *ngIf="registerForm.get('password').invalid
-          && registerForm.get('password').touched
-          && registerForm.get('password').errors['required']">
-          Password address is required
-        </span>
-      </div>
+      <app-text-input formControlName="displayName" [label]="'Display Name'"></app-text-input>
+      <app-text-input formControlName="email" [label]="'Email Address'"></app-text-input>
+      <app-text-input formControlName="password" [label]="'Password'" [type]="'password'"></app-text-input>
 
       <div class="container pt-3">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
